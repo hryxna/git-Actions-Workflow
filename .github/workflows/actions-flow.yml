@@ -25,4 +25,4 @@ jobs:
         working-directory : ./src/com/company/
         run: |
           javac Main.java
-          java Main
+          java com.company.Main
