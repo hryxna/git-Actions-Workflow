@@ -25,4 +25,5 @@ jobs:
         working-directory : ./src/com/company/
         run: |
           javac Main.java
+        working-directory : ./out/production/git-Actions-Workflow/
           java com.company.Main
