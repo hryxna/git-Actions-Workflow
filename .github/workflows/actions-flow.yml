@@ -30,7 +30,7 @@ jobs:
         
       - name : list of modified files
         run: |
-          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          URL="https://api.github.com/repos/git-Actions-Workflow/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           if echo $FILES | grep -q ".json"; then
             echo "json file changed!!"
