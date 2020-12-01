@@ -31,9 +31,7 @@ jobs:
       - name : list of modified files
         run: |
           URL="https://api.github.com/repos/hryxna/git-Actions-Workflow/pulls/{pull_number}/files"
-          FILES=$(curl \ 
-          -H "Accept: application/vnd.github.v3+json" \
-          $URL | jq -r '.[] | .filename')
+          FILES=$(curl \ -H "Accept: application/vnd.github.v3+json" \ -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
             
             
