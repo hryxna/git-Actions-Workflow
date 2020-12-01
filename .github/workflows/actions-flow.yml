@@ -31,7 +31,7 @@ jobs:
       - name : list of modified files
         run: |
           URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl \ -H "Accept: application/vnd.github.v3+json" \ -s -X GET -G "$URL" | jq -r '.[] | .filename')
-          echo $FILES
+          FILES=$(curl -s -X GET -G "$URL" | jq -r '.[] | .filename')
+          echo "$FILES"
             
             
