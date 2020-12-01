@@ -30,10 +30,6 @@ jobs:
         
       - name : list of modified files
         run: |
-          URL="https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}/files"
-          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
-          if echo $FILES | grep -q ".json"; then
-            echo "json file changed!!"
-          else
-            echo "no json file changed!!"
-          fi
+          curl \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/hryxna/git-Actions-Workflow/pulls/{pull_number}/files
