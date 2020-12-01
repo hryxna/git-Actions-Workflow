@@ -6,7 +6,7 @@ name: Actions-Workflow-testing
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ test-1-files ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,3 +27,9 @@ jobs:
       - name : Running .class file
         working-directory : ./out/production/git-Actions-Workflow/
         run : java com.company.Main
+        
+      - name : list of modified files
+        run: |
+          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
+          echo $FILES
